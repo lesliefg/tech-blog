@@ -3,8 +3,6 @@ const { Post, User, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-//need to fix/update some routes once i render the pages so i can see what does and doesn't work 😪
-
 //create new post if logged in
 router.post('/', withAuth, async (req, res) => {
     try {

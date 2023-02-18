@@ -1,0 +1,22 @@
+html {
+    background-color: #d0dbf9;
+    min-height: 100vh;
+}
+
+.navbar{
+    height: 70px;
+    background-color: #fed0de;
+}
+
+#logo {
+    height: 90px;
+    width: 140px;
+}
+
+.navbar-item img {
+    max-height: 2.75rem;
+}
+
+.columns{
+    margin-top: 10px;
+}
