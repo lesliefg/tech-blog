@@ -5,13 +5,13 @@ const withAuth = require('../utils/auth');
 //need to fix/update some routes once i render the pages so i can see what does and doesn't work 😪
 
 //Get all posts for homepage
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
       include: [
         {
           model: Post,
-          attributes: ['postTitle', 'postContent', 'dateCreated', 'userId']
+          attributes: ['postTitle', 'postContent', 'dateCreated', 'userId'],
         },
       ],
     });
@@ -27,35 +27,57 @@ router.get('/', withAuth, async (req, res) => {
 
 //render single post page
 router.get('/post/:id', withAuth, async (req, res) => {
-    try {
-      const dbPostData = await Post.findByPk(req.params.id);
-  
-      const post = dbPostData.get({ plain: true });
-  
-      res.render('post', { post, loggedIn: req.session.loggedIn });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
-
-//create new post
-router.get('/newPost', async (req, res) => {
   try {
-      res.render('newPost');
+    const dbPostData = await Post.findByPk(req.params.id, {
+      include: [{ model: User }, { model: Comment }],
+    });
+
+    const post = dbPostData.get({ plain: true });
+
+    res.render('post', { post, loggedIn: req.session.loggedIn });
   } catch (err) {
-      res.status(500).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
 //reroute to homepage if logged in, else render login page
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+//create new post
+router.get('/newPost', withAuth, async (req, res) => {
+  try {
+    res.render('newPost');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// render editPost page
+router.get('/editPost/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      //this JOINS with User data
+      include: [{ model: User }],
+    });
+
+    // serialize data so that template can read it
+    // no need to map over it because this is one object
+    const post = postData.get({ plain: true });
+
+    res.render('updatePost', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 
 module.exports = router;
