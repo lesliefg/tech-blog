@@ -1,0 +1,18 @@
+<div class="column is-three-quarters">
+    <div class="box has-background-pink has-text-white">
+        <h1 class="is-size-1 has-text-centered">Your Posts</h1>
+    </div>
+   {{#if posts.length}} 
+
+        {{#each posts as |post|}}
+        {{> owned-post-details post}}
+        {{/each}}
+    {{else}}
+        <div class="box has-background-blue has-text-white">
+            <h1 class="is-size-3 has-text-centered">
+                You have no posts yet! Make one using the "New Post" button in the navbar above!
+            </h1>
+        </div>
+        
+    {{/if}}
+</div>

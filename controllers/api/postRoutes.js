@@ -1,69 +1,64 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection');
-const withAuth = require('../../utils/auth');
+const { Post } = require('../../models');
 
-//create new post if logged in
-router.post('/', withAuth, async (req, res) => {
-    try {
-      const newProject = await Project.create({
-        ...req.body,
-        user_id: req.session.user_id,
-      });
-  
-      res.status(200).json(newProject);
-    } catch (err) {
-      res.status(400).json(err);
-    }
-    res.render('newPost');
-  });
+//Create new event
+router.post('/new', async (req, res) => {
+  try {
+    const newPost = await Post.create({
+      ...req.body,
+      userId: req.session.id,
+    });
 
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-
-//delete a post based on ID and if logged in user matches post user id
-router.delete('/:id', withAuth, async (req, res) => {
-    try {
+//Delete Post
+router.delete('/:id', async (req, res) => {
+  try {
       const postData = await Post.destroy({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
+          where: { id: req.params.id }
       });
-  
+
+      // if wrong id entered
       if (!postData) {
-        res.status(404).json({ message: 'No post found with this id!' });
-        return;
+          res.status(404).json({message: 'no post found with this id'});
+      } else {
+          console.log(`\n Deleting post with id: ${req.params.id} \n`);
+          res.status(200).json(postData);
       }
-  
-      res.status(200).json(postData);
-    } catch (err) {
+
+  } catch (err) {
       res.status(500).json(err);
-    }
-    res.render('post');
-  });
+  }
+})
 
-
-
-//edit post based on id and if logged in user id matches post user id
+//Update Post
 router.put('/:id', async (req, res) => {
-    try {
-        const postData = await Post.update(
-            {title: req.body.title,
-             content: req.body.content,
-             user_id: req.body.user_id },
-             { where: {id: req.params.id} }
-        );
-    
-        if (!postData) {
-          res.status(404).json({ message: 'No post found with this id!' });
-          return;
-        }
-    
-        res.status(200).json(postData);
-      } catch (err) {
-        res.status(500).json(err);
+  try {
+
+      const postData = await Post.update(
+          // set all attributes of blog posts to values passed in to req.body
+          { title: req.body.postTitle,
+            content: req.body.postContent,
+            userId: req.body.userId },
+            { where: {id: req.params.id} }
+      )
+
+      // if wrong id entered
+      if (!postData) {
+          res.status(404).json({message: 'no post found with this id'});
+      } else {
+          console.log(`\n Editing post record id: ${req.params.id} \n`)
+          res.status(200).json(postData);
       }
-      res.render('updatePost');
+      
+
+  } catch (err) {
+      res.status(400).json(err)
+  }
 });
 
 module.exports = router;

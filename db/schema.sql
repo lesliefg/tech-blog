@@ -1,3 +1,3 @@
-CREATE DATABASE IF NOT EXISTS posts_db;
+CREATE DATABASE IF NOT EXISTS blog_db;
 
-USE posts_db;
+USE blog_db;

@@ -1,8 +1,8 @@
 {
-  "name": "tech-blog",
+  "name": "project-2",
   "version": "1.0.0",
-  "description": "CMS-style blog site to publish articles, blog posts and any thoughts and opinions",
-  "main": "index.js",
+  "description": "",
+  "main": ".npm-init.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -11,27 +11,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lesliefg/tech-blog.git"
+    "url": "git+https://github.com/anelson92/Project-2.git"
   },
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lesliefg/tech-blog/issues"
+    "url": "https://github.com/anelson92/Project-2/issues"
   },
-  "homepage": "https://github.com/lesliefg/tech-blog#readme",
+  "homepage": "https://github.com/anelson92/Project-2#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
+    "eslint-config-prettier": "^8.6.0",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.7",
     "express-session": "^1.17.3",
-    "handlebars": "^4.7.7",
-    "mysql2": "^3.1.0",
+    "mysql2": "^3.1.1",
+    "prettier": "^2.8.4",
     "sequelize": "^6.28.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2"
   }

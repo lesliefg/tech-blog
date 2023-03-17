@@ -1,78 +1,66 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-//need to fix/update some routes once i render the pages so i can see what does and doesn't work 😪
-
-// Create new user upon submission in user registration form
+//Create new user
 router.post('/', async (req, res) => {
   try {
-    const dbUserData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
+    const userData = await User.create(req.body);
 
-    // save logged_in to session
     req.session.save(() => {
-      req.session.logged_in = true;
-      res.status(200).json(dbUserData);
-    });
+      req.session.user_id = userData.id;
+      req.session.loggedIn = true;
 
-    // render homepage if valid credentials are given
-    res.render('home');
+      res.status(200).json(userData);
+    });
   } catch (err) {
-    console.log(err);
     res.status(400).json(err);
   }
 });
 
-//Login route
+//Login existing user
 router.post('/login', async (req, res) => {
   try {
-    // validating username
-    const dbUserData = await User.findOne({
-      where: {
-        username: req.body.username,
-      },
-    });
+    const userData = await User.findOne({ where: { username: req.body.username } });
 
-    if (!dbUserData) {
+    if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    //validating password based on user credentials
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    // render homepage if valid credentials given by user
     req.session.save(() => {
+      req.session.user_id = userData.id;
       req.session.loggedIn = true;
 
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
+
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-//Logout route
+//Logout
 router.post('/logout', (req, res) => {
-  console.log(`\n Logged in: ${req.session.logged_in}  \n`);
-
-  if (req.session.logged_in) {
-    res.render('login');
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
+
+
 
 module.exports = router;
