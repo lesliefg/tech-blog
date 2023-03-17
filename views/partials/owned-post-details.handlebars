@@ -10,17 +10,22 @@
     <footer class="card-footer">
       <p class="card-footer-item">
         <span>
-          Post By {{user.username}}
-        </span>
-      </p>
-      <p class="card-footer-item">
-        <span>
           Posted On: {{format_date dateCreated}}
         </span>
       </p>
       <p class="card-footer-item">
         <span>
           <a href="/post/{{id}}">View Full Post</a>
+        </span>
+      </p>
+      <p class="card-footer-item">
+        <span>
+          <a href="/editPost/{{id}}">Edit Post</a>
+        </span>
+      </p>
+      <p class="card-footer-item">
+        <span>
+          <a href="/profile" id="deletePost" postId="{{id}}">Delete Post</a>
         </span>
       </p>
     </footer>

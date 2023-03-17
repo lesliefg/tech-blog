@@ -21,12 +21,13 @@
             <img id="logo" src="/photos/tech_spot.png">
             </a>
         </div>
-        {{#if loggedIn}}
+        
         <div id="navbarBasicExample" class="navbar-menu">
+        {{#if loggedIn}}    
             <div class="navbar-start">
                 <a href="/" id="dashboard" class="navbar-item">Dashboard</a>
                 <a href="/profile" id="dashboard" class="navbar-item">Profile</a>
-                <a href="/newPost" id="dashboard" class="navbar-item">New Post</a>
+                <a href="/newPost" id="newPost" class="navbar-item">New Post</a>
             </div>
 
             <div class="navbar-end">
@@ -43,7 +44,11 @@
         </div>
         {{/if}}
     </nav>
-    {{{body}}}
+
+    <div class="columns is-centered">
+        {{{body}}}
+    </div>
+    
 
 <!--Font awesome script-->
 <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>

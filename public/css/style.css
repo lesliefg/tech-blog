@@ -20,3 +20,18 @@ html {
 .columns{
     margin-top: 10px;
 }
+
+.has-background-pink{
+    background-color: #c58397;
+}
+
+.has-background-blue{
+    background-color: #7f96d3;
+}
+
+.fifty-chars {
+    width: 50ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

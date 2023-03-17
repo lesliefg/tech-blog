@@ -5,30 +5,30 @@
           <div class="field">
             <label class="label">Title</label>
             <div class="control">
-              <input id="title" class="input" type="text" placeholder="Text input" />
+              <input class="input" type="text" placeholder="Text input" value="{{post.id}}" />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Username</label>
             <div class="control">
-              <input id="username" class="input" type="text" value="{{username}}" disabled/>
+              <input id="title" class="input" type="text" value="{{username}}" disabled/>
             </div>
           </div>
 
           <div class="field">
             <label class="label">Post Body</label>
             <div class="control">
-              <textarea id="content" class="textarea" placeholder="Textarea"></textarea>
+              <textarea class="textarea" placeholder="Textarea">{{post.postContent}}</textarea>
             </div>
           </div>
 
           <div class="field is-grouped">
             <div class="control">
-              <button id="post" class="button is-link">Post</button>
+              <button class="button is-link">Save</button>
             </div>
             <div class="control">
-              <button id="cancel" class="button is-link is-light">Cancel</button>
+              <button class="button is-link is-light">Cancel</button>
             </div>
           </div>
         </div>
@@ -36,4 +36,4 @@
     </div>
   </div>
 
-  <script src="/js/newPost.js"></script>
+  <script src="/js/editPost.js"></script>
