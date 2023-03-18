@@ -5,30 +5,40 @@
           <div class="field">
             <label class="label">Title</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Text input" value="{{post.id}}" />
+              <input id="title" class="input" type="text" placeholder="Text input" value="{{post.postTitle}}" />
             </div>
           </div>
 
           <div class="field">
             <label class="label">Username</label>
             <div class="control">
-              <input id="title" class="input" type="text" value="{{username}}" disabled/>
+              <input id="username" class="input" type="text" value="{{username}}" disabled/>
+            </div>
+          </div>
+          
+          <div class="field">
+            <label class="label">Post ID</label>
+            <div class="control">
+              <input id="postId" class="input" type="text" value="{{post.id}}" disabled/>
             </div>
           </div>
 
           <div class="field">
             <label class="label">Post Body</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Textarea">{{post.postContent}}</textarea>
+              <textarea id="content" class="textarea" placeholder="Textarea">{{post.postContent}}</textarea>
             </div>
           </div>
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-link">Save</button>
+              <button id="save" class="button is-link">Save Post</button>
             </div>
             <div class="control">
-              <button class="button is-link is-light">Cancel</button>
+              <button id="delete" class="button is-danger">Delete Post</button>
+            </div>
+            <div class="control">
+              <button id="cancel" class="button is-link is-light">Cancel</button>
             </div>
           </div>
         </div>
