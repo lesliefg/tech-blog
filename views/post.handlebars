@@ -1,5 +1,42 @@
 <div class="column is-three-quarters">
-   {{#each posts as |post|}}
-    {{> post-details post}}
-    {{/each}}
+    <div class="box has-background-pink has-text-white">
+        <h1 id="title" postId="{{post.id}}" class="is-size-1 has-text-centered">{{post.postTitle}}</h1>
+    </div>
+
+    <div class="box has-background-white">
+        <h1 class="is-size-4 has-text-centered">{{post.postContent}}</h1>
+    </div>
+
+    <div class="box has-background-blue">
+        {{#if comments.length}} 
+
+        {{#each comments as |comment|}}
+        {{> comment-details comment}}
+        {{/each}}
+    {{else}}
+        <div class="box has-background-white has-text-black">
+            <h1 class="is-size-4 has-text-centered">
+                There are no comments yet! Be the first to add one!
+            </h1>
+        </div>
+    {{/if}}
+
+        <div class="field">
+            <label class="label">Leave a Comment</label>
+            <div class="control">
+              <textarea id="comment" class="textarea" placeholder="Textarea"></textarea>
+            </div>
+          </div>
+        <div class="field is-grouped">
+            <div class="control">
+              <button id="save" class="button is-link">Add Comment</button>
+            </div>
+            <div class="control">
+              <button id="cancel" class="button is-link is-light">Clear Comment</button>
+            </div>
+          </div>
+    </div>
+   
 </div>
+
+  <script src="/js/comment.js"></script>

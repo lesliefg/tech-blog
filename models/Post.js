@@ -12,17 +12,15 @@ Post.init(
       autoIncrement: true,
     },
     postTitle: {
-      type: DataTypes.STRING(25),
-      allowNull: false,
-      unique: true,
-    },
-    postContent: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+    },
+    postContent: {
+      type: DataTypes.STRING(6000),
+      allowNull: false,
     },
     dateCreated: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },

@@ -16,7 +16,7 @@ Blog website created to share posts regarding Tech easily with others.
 
 ## Installation 
 To access the webpage, you can follow the provided Heroku link below or download the repo from GitHub and use it locally.
-- Heroku: [link]()
+- Heroku: [link](https://github.com/lesliefg/tech-blog)
 - GitHub [link]()
 
 ## Usage
@@ -28,7 +28,7 @@ Posts can be viewed by any user, even those not logged in. However, to create a 
 - Email: leslie.garcia2433@gmail.com
 
 ## Credits 
-Developed by [lesliefg]()
+Developed by [lesliefg](https://github.com/lesliefg?tab=repositories)
 
 ## Licenses
 - This project has a MIT license. To learn more about this license type click the license button at the top of the README.
