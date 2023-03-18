@@ -34,4 +34,5 @@ Developed by [lesliefg](https://github.com/lesliefg?tab=repositories)
 - This project has a MIT license. To learn more about this license type click the license button at the top of the README.
 
 ## Screenshots
-![alt text]()
+The video can also be viewed in the assets folder or at this [link](https://drive.google.com/file/d/1Vo9xELwVSfayPkxcp6DwhU3t_svnc7QV/view)
+![alt text](./assets/Tech%20Spot.gif)
